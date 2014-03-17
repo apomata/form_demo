@@ -25,11 +25,9 @@ class ItemsController < ApplicationController
     puts '#####################################################'+params[:e].to_s
 
     #@search= Item.find_by_title params[:q]
-    #@search.find(:all, :conditions => ["title = ? AND description = ?",params[:q],params[:w]]) 
 
     @search = Item.where({:title => params[:q], :description => params[:w]}).all
-
-
+    
     if(!@search.first.nil?)
       @item = @search.first
       item_id = @item.id
