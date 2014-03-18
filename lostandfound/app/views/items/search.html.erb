@@ -1,9 +1,24 @@
+<link href="assets/stylesheets/search.css" rel="stylesheet" type="text/css">
+
 <%= form_tag("/items/search", method: "get") do %>
-  <%= label_tag(:q, "Search for item title:") %>
-  <%= text_field_tag(:q) %>
-  <%= label_tag(:w, "Search for item description:") %>
-  <%= text_field_tag(:w) %>
-  <%= label_tag(:e, "Search for item type:") %>
-  <%= text_field_tag(:e) %>
-  <%= submit_tag("Search") %>
+ 	<div class= "drop_down">
+ 		<%= label_tag(:s, "Seach for “Any of these conditions (OR)” vs. “All of these conditions (AND)") %>
+  		<%= select_tag(:s, options_for_select([['and', true], ['or', false]])) %>
+  	</div>
+  	<div class= "form">
+  		<%= label_tag(:q, "Search for item title:") %>
+  		<%= text_field_tag(:q) %>
+	<div class= "form">
+  		<%= label_tag(:w, "Search for item description:") %>
+  		<%= text_field_tag(:w) %>
+  	</div>	
+  	<div class= "form">
+  		<%= label_tag :type_id, "select type:" %>
+  		<%= collection_select(:item, :type_id, Type.all, :id, :title, {:prompt => true})%>
+  	</div>
+  	
+  	<div class= "submit">
+  		<%= submit_tag("Search") %>
+	</div>
+  
 <% end %>

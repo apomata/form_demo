@@ -1,6 +1,6 @@
 class Types < ActiveRecord::Migration
   def change
-  	create_table :items do |t|
+  	create_table :types do |t|
       t.string :title
       t.string :description
 

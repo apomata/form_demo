@@ -26,7 +26,16 @@ class ItemsController < ApplicationController
 
     #@search= Item.find_by_title params[:q]
 
-    @search = Item.where({:title => params[:q], :description => params[:w]}).all
+    #@search = Item.where({:title => params[:q], :description => params[:w]}).all
+
+    if params[:search]
+      @search = Item.where({:title => params[:q], :description => params[:w], :type  => params[:type]}).all
+    else
+      @search = Item.where({:title => params[:q]}).all
+      @search += Item.where({:description => params[:w]}).all
+      @search += Item.where({:type  => params[:type]}).all
+    end
+
     
     if(!@search.first.nil?)
       @item = @search.first
